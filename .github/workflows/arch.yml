@@ -28,7 +28,7 @@ jobs:
       run: |
         pacman -Suy --noconfirm
         pacman -S --noconfirm git
-        git submodule update --init --recursive
+        pwd
 
     - name: Install dependencies
       run: |
