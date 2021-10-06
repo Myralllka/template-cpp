@@ -19,3 +19,7 @@ or after cloning this template use...
 git submodule init
 git submodule update
 ```
+or clone it using
+```
+git clone  --recurse-submodules <link>
+```
