@@ -23,19 +23,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Checkout submodules
-      run: |
-        pacman -Suy --noconfirm
-        pacman -S --noconfirm git
-        pwd
 
     - name: Install dependencies
       run: |
+        pacman -Suy --noconfirm
         [[ -r dependencies/pacman.txt ]] && sed 's/#.*//' dependencies/pacman.txt | xargs pacman -S --noconfirm
         curl -L https://gist.githubusercontent.com/Myralllka/e8f4e93e6bf0134b693371f1aad9d860/raw/a55dcfd8b85230734baff5e49b8a50978f979dd5/install_pvs_on_linux.sh | bash
         rm -rf /usr/bin/cc
         rm -rf /usr/bin/c++
+
+    - name: Checkout submodules
+      run: git submodule update --init --recursive
 
     - name: Configure
       run: CMAKE_C_COMPILER=${{ matrix.cc }} CMAKE_CXX_COMPILER=${{ matrix.cxx }} cmake -G"Unix Makefiles" -Bbuild
