@@ -1,3 +1,8 @@
+### custom files ###
+cmake-build-debug/
+cmake-build-release/
+.idea/
+
 ### C++ ###
 # Prerequisites
 *.d
